@@ -1,3 +1,3 @@
 <?php
-    $con = mysqli_connect("localhost","Filiper","qwerty","battleship");
+    $con = mysqli_connect("localhost","Filiper","qwerty","battlechips");
 ?>

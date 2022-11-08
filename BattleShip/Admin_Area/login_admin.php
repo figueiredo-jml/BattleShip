@@ -1,5 +1,5 @@
 <?php
-    include("../includes/db.php");
+    include("../Includes/db.php");
 ?>
 
 
@@ -18,11 +18,11 @@
     <form action="admin_accounts.php" method="post">
         <div class="form-group">
             <label>Email:</label>
-            <input type="text" class="form-control" name="Email" required>
+            <input type="text" class="form-control" name="admin_email" required>
         </div>
         <div class="form-group">
             <label>Password:</label>
-            <input type="password" class="form-control" name="Pass" required>
+            <input type="password" class="form-control" name="admin_pass" required>
         </div>
 
         <div class="text-center">
@@ -39,11 +39,11 @@
 
 <?php
 if(isset($_POST['login'])){
-    $Email = $_POST['Email'];
-    $Pass = $_POST['Pass'];
+    $admin_email = $_POST['admin_email'];
+    $admin_pass = $_POST['admin_pass'];
 
-    $hash_password = md5($Pass);
-    $select_admin = "select * from admin_accounts where Email='$Email' AND Pass='$hash_password'";
+    $hash_password = md5($admin_pass);
+    $select_admin = "select * from admin_accounts where admin_email='$admin_email' AND admin_pass='$hash_password'";
     $run_admin = mysqli_query($con, $select_admin);
 
     $check_admin = mysqli_num_rows($run_admin);
