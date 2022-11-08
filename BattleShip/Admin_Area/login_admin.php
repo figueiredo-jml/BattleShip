@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("../Includes/db.php");
 ?>
 
@@ -15,7 +16,7 @@
             <h1>Admin Login</h1>
         </center>
     </div>
-    <form action="admin_accounts.php" method="post">
+    <form action="#" method="post">
         <div class="form-group">
             <label>Email:</label>
             <input type="text" class="form-control" name="admin_email" required>
@@ -42,8 +43,9 @@ if(isset($_POST['login'])){
     $admin_email = $_POST['admin_email'];
     $admin_pass = $_POST['admin_pass'];
 
-    $hash_password = md5($admin_pass);
-    $select_admin = "select * from admin_accounts where admin_email='$admin_email' AND admin_pass='$hash_password'";
+    #$hash_password = md5($admin_pass);
+    #echo "$hash_password";
+    $select_admin = "SELECT * FROM admin_accounts WHERE admin_email='$admin_email' AND admin_pass='$admin_pass'";
     $run_admin = mysqli_query($con, $select_admin);
 
     $check_admin = mysqli_num_rows($run_admin);
@@ -56,6 +58,10 @@ if(isset($_POST['login'])){
                 <strong>ERRO!</strong> Password ou email errados!.
                 </div>
         ";
+    }
+    else{
+        header("Location:admin_accounts.php");
+        exit();
     }
 }
 ?>
