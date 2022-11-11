@@ -13,11 +13,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="https://sourcecodester.com">Sourcecodester</a>
-    </div>
-  </nav>
   <div class="col-md-3"></div>
   <div class="col-md-6 well">
     <h3 class="text-primary">PHP - Update Data Through Modal Dialog Using MySQLi</h3>
@@ -41,12 +36,12 @@
           while($fetch = mysqli_fetch_array($query)){
         ?>
         <tr>
-          <td><?php echo $fetch['admin_Id']?></td>
+          <td><?php echo $fetch['admin_id']?></td>
           <td><?php echo $fetch['admin_nome']?></td>
           <td><?php echo $fetch['admin_email']?></td>
           <td><?php echo $fetch['admin_pass']?></td>
           <td><?php echo $fetch['admin_avatar']?></td>
-          <td><button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal<?php echo $fetch['admin_Id']?>"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>
+          <td><button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal<?php echo $fetch['admin_id']?>"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>
         </tr>
         <?php
  
@@ -91,5 +86,32 @@
       </div>
     </div>
   </div>  
+  <div class="container">
+  <h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
 </body> 
 </html>

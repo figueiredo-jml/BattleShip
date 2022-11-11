@@ -70,15 +70,15 @@
                             $s = '';
                             foreach($userData as $val){
                                 echo '<tr>';
-                                echo ' <td valing="middle">' . $val['admin_Id'] . '</td>';
+                                echo ' <td valing="middle">' . $val['admin_id'] . '</td>';
                                 echo ' <td valing="middle">' . $val['admin_nome'] . '</td>';
                                 echo ' <td valing="middle">' . $val['admin_email'] . '</td>';
                                 echo ' <td valing="middle">' . $val['admin_pass'] . '</td>';
                                 echo ' <td valing="middle">' . $val['admin_avatar'] . '</td>';
                                 echo ' <td align="center">';
-                                echo ' <a href="edit_categorias.php?editId=' . $val['admin_Id'] . '" class="text-primary"><i class="bi
+                                echo ' <a href="edit_categorias.php?editId=' . $val['admin_id'] . '" class="text-primary"><i class="bi
                                 bi-pencil"></i> Editar</a> | ';
-                                echo ' <a href="delete_categorias.php?delId=' . $val['admin_Id'] . '" class="text-danger"><i class="bi
+                                echo ' <a href="delete_categorias.php?delId=' . $val['admin_id'] . '" class="text-danger"><i class="bi
                                 bi-trash"></i>Apagar</a>';
                                 echo ' </td>';
                                 echo '</tr>';
@@ -86,7 +86,7 @@
                         }
                         function get_admin_acc($sqldb)
                         {
-							$sql = $sqldb->prepare("SELECT * FROM admin_accounts ORDER BY admin_Id");
+							$sql = $sqldb->prepare("SELECT * FROM admin_accounts ORDER BY admin_id");
 
                             $sql->execute();
 
