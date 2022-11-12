@@ -52,6 +52,7 @@
         </div>
     </form>
         <div class="modal-footer">
+          <button type="submit" class="btn btn-default" name="submit">Criar conta</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -85,8 +86,24 @@
           <td><?php echo $fetch['admin_avatar']?></td>
         </tr>
         <?php
-          include 'update_user.php';
-          }
+          if(isset($_POST['submit'])){
+            $admin_id = $_POST['admin_id'];
+            $admin_nome = $_POST['admin_nome'];
+            $admin_email = $_POST['admin_email'];
+            $admin_pass = $_POST['admin_pass'];
+            $admin_avatar = $_POST['admin_avatar'];
+            
+                $sql = "INSERT INTO admin_accounts (admin_id, admin_nome, admin_email, admin_pass, admin_avatar) VALUES ('$admin_id', '$admin_nome', '$admin_email', '$admin_pass', '$admin_avatar')";
+        
+                $rv_0 = mysqli_query($con, $sql);
+                if ($rv_0) {
+                    echo "<script>alert('Foi registado com sucesso!')</script>";
+                    $_SESSION['admin_email']=$admin_email;
+                } else {
+                    echo "<script>alert(Erro a registar o cliente: " . mysqli_error($con). ")</script>";
+                }
+            }
+        }
         ?>
 
 </body>
