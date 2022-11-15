@@ -8,6 +8,7 @@
   <title>Admin Accounts</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -42,9 +43,13 @@
             <label>Password:</label>
             <input type="password" name="admin_pass" required>
         </div>
-        <div class="form-group">
-            <label>Avatar:</label>
-            <input type="text" name="admin_avatar" required>
+
+        <p>Por favor escolha o avatar que preferir</p>
+        <div class="av-selector">
+          <input id="a1" type="radio" name="admin_avatar" value="a1" />
+          <label class="drinkcard-av a1" for="a1"></label>
+          <input id="a2" type="radio" name="admin_avatar" value="a2" />
+          <label class="drinkcard-av a2"for="a2"></label>
         </div>
         </div>
    
@@ -84,8 +89,8 @@
           <td><?php echo $fetch['admin_email']?></td>
           <td><?php echo $fetch['admin_pass']?></td>
           <td><?php echo $fetch['admin_avatar']?></td>
-          <td> <a href="edit_admin.php?editId=' . $fetch['admin_id'] . '" class="text-primary"><i class="bi bi-pencil-square"></i></a></td>
-          <td> <a href="delete_admin.php?delId=' . $fetch['admin_id'] . '" class="text-danger"><i class="bi bi-trash"></i></a></td>
+          <td><a href="edit_admin.php?editId=' . $fetch['admin_id'] . '" class="text-primary"><i class="bi bi-pencil-square"></i></a></td>
+          <td><a href="delete_admin.php?delId=' . $fetch['admin_id'] . '" class="text-danger"><i class="bi bi-trash"></i></a></td>
         </tr>
         <?php
           }

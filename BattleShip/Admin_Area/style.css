@@ -59,3 +59,42 @@ span.psw {
      width: 100%;
   }
 }
+
+.av-selector input{
+  margin:0;padding:0;
+  -webkit-appearance:none;
+     -moz-appearance:none;
+          appearance:none;
+}
+.a1{background-image:url(../../Images/Admin/admin1.png);}
+.a2{background-image:url(../../Images/Admin/admin2.png);}
+
+.av-selector input:active +.drinkcard-av{opacity: .9;}
+.av-selector input:checked +.drinkcard-av{
+  -webkit-filter: none;
+     -moz-filter: none;
+          filter: none;
+}
+.drinkcard-av{
+  cursor:pointer;
+  background-size:contain;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width:100px;height:70px;
+  -webkit-transition: all 100ms ease-in;
+     -moz-transition: all 100ms ease-in;
+          transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+     -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+          filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-av:hover{
+  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+     -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+          filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}

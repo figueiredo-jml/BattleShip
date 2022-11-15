@@ -43,9 +43,8 @@ if(isset($_POST['login'])){
     $admin_email = $_POST['admin_email'];
     $admin_pass = $_POST['admin_pass'];
 
-    #$hash_password = md5($admin_pass);
-    #echo "$hash_password";
-    $select_admin = "SELECT * FROM admin_accounts WHERE admin_email='$admin_email' AND admin_pass='$admin_pass'";
+    $hash_password = md5($admin_pass);
+    $select_admin = "SELECT * FROM admin_accounts WHERE admin_email='$admin_email' AND admin_pass='$hash_password'";
     $run_admin = mysqli_query($con, $select_admin);
 
     $check_admin = mysqli_num_rows($run_admin);
