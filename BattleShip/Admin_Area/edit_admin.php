@@ -2,9 +2,9 @@
 
     include "../Includes/db.php";
 
-    $id = $_GET['delId'];
+    $id = $_GET['editId'];
 
-    $del = mysqli_query($con,"DELETE FROM admin_accounts WHERE admin_id = '$id'");
+    $del = mysqli_query($con,"admin_id = '$id'");
 
     if($del)
     {
@@ -14,6 +14,6 @@
     }
     else
     {
-        echo "Error deleting record";
+        echo "Error editing record";
     }
 ?>

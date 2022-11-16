@@ -10,6 +10,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+
 button {
   background-color: #04AA6D;
   color: white;
@@ -66,8 +67,8 @@ span.psw {
      -moz-appearance:none;
           appearance:none;
 }
-.a1{background-image:url(../../Images/Admin/admin1.png);}
-.a2{background-image:url(../../Images/Admin/admin2.png);}
+.admin1{background-image:url(../../Images/Admin/admin1.png);}
+.admin2{background-image:url(../../Images/Admin/admin2.png);}
 
 .av-selector input:active +.drinkcard-av{opacity: .9;}
 .av-selector input:checked +.drinkcard-av{

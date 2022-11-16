@@ -46,10 +46,10 @@
 
         <p>Por favor escolha o avatar que preferir</p>
         <div class="av-selector">
-          <input id="a1" type="radio" name="admin_avatar" value="a1" />
-          <label class="drinkcard-av a1" for="a1"></label>
-          <input id="a2" type="radio" name="admin_avatar" value="a2" />
-          <label class="drinkcard-av a2"for="a2"></label>
+          <input id="admin1" type="radio" name="admin_avatar" value="admin1" />
+          <label class="drinkcard-av a1" for="admin1"></label>
+          <input id="admin2" type="radio" name="admin_avatar" value="admin2" />
+          <label class="drinkcard-av a2"for="admin2"></label>
         </div>
         </div>
    
@@ -68,13 +68,13 @@
 <table class="table table-bordered">
       <thead class="alert-success">
         <tr>
-          <th>Admin Id</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Pass</th>
-          <th>Avatar</th>
-          <th>Editar</th>
-          <th>Apagar</th>
+          <th style="text-align:center">Admin Id</th>
+          <th style="text-align:center">Nome</th>
+          <th style="text-align:center">Email</th>
+          <th style="text-align:center">Pass</th>
+          <th style="text-align:center">Avatar</th>
+          <th style="text-align:center">Editar</th>
+          <th style="text-align:center">Apagar</th>
         </tr>
       </thead>
       <tbody style="background-color:#fff;">
@@ -84,13 +84,13 @@
           while($fetch = mysqli_fetch_array($query)){
         ?>
         <tr>
-          <td><?php echo $fetch['admin_id']?></td>
-          <td><?php echo $fetch['admin_nome']?></td>
-          <td><?php echo $fetch['admin_email']?></td>
-          <td><?php echo $fetch['admin_pass']?></td>
-          <td><?php echo $fetch['admin_avatar']?></td>
-          <td><a href="edit_admin.php?editId=' . $fetch['admin_id'] . '" class="text-primary"><i class="bi bi-pencil-square"></i></a></td>
-          <td><a href="delete_admin.php?delId=' . $fetch['admin_id'] . '" class="text-danger"><i class="bi bi-trash"></i></a></td>
+          <td align="center" style='vertical-align: middle;'><?php echo $fetch['admin_id']?></td>
+          <td align="center" style='vertical-align: middle;'><?php echo $fetch['admin_nome']?></td>
+          <td align="center" style='vertical-align: middle;'><?php echo $fetch['admin_email']?></td>
+          <td align="center" style='vertical-align: middle;'><?php echo $fetch['admin_pass']?></td>
+          <td align="center" style='vertical-align: middle;'><img src="<?php echo "../../Images/Admin/" . $fetch['admin_avatar'] . ".png" ?>" style="height: 100px; width: 100px;"/></td>
+          <td align="center" style='vertical-align: middle;'><a href="edit_admin.php?editId=<?php echo $fetch['admin_id']; ?>" class="text-primary"><i class="bi bi-pencil-square" style="font-size: 30px;"></i></a></td>
+          <td align="center" style='vertical-align: middle;'><a href="delete_admin.php?delId=<?php echo $fetch['admin_id']; ?>" class="text-danger"><i class="bi bi-trash" style="font-size: 30px;"></i></a></td>
         </tr>
         <?php
           }
