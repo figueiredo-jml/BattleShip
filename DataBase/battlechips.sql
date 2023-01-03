@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 12:58 AM
+-- Generation Time: Jan 02, 2023 at 08:09 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -24,47 +24,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_accounts`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE `admin_accounts` (
-  `admin_id` int(11) NOT NULL,
-  `admin_nome` varchar(255) NOT NULL,
-  `admin_email` varchar(255) NOT NULL,
-  `admin_pass` varchar(255) NOT NULL,
-  `admin_avatar` text NOT NULL
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `avatar` text NOT NULL,
+  `funcao` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin_accounts`
+-- Dumping data for table `accounts`
 --
 
-INSERT INTO `admin_accounts` (`admin_id`, `admin_nome`, `admin_email`, `admin_pass`, `admin_avatar`) VALUES
-(1, 'Filipe', 'filiper@ua.pt', 'qwerty', ''),
-(2, 'Joao', 'joao@ua.pt', '123', '2'),
-(3, 'Jose', 'jose@ua.pt', '', '3'),
-(4, 'tom', 'tom@ua.pt', '202cb962ac59075b964b07152d234b70', '4'),
-(5, 'avatar', 'avatar@ua.pt', '202cb962ac59075b964b07152d234b70', '');
+INSERT INTO `accounts` (`id`, `nome`, `email`, `pass`, `avatar`, `funcao`) VALUES
+(1, 'Filipe', 'filipe@mail.pt', '$2y$10$BLqpVz/yt83S7HSNZ8GCjeYZ7UigzfQq63Ia8ng2A3OopKMKnMDKO', 'admin1', 'Admin'),
+(8, 'Jose', 'jose@mail.pt', '$2y$10$Ijo/DKTHqWJionjUvT55muZJBf8jGLlBlRDIGBvpNzeP6PCHNJyqu', 'client3', 'Cliente'),
+(9, 'JoseFigueiredo', 'Josefigueiredo@mail.pt', '$2y$10$.brGQxeXEX0gUh8G7FIbhuvjbaXE5W3HKGkNnVyF9OvPR.8mEbs5C', 'admin2', 'Admin'),
+(10, 'Hashpass', 'hashpass@mail.pt', '$2y$10$NSjopxYWt8dT9f1Mb4PyseHsL6YRQY3SQM4w65ppADfIFDs2R4HUi', 'client5', 'Cliente'),
+(11, 'Register', 'Register@mail.pt', '$2y$10$X1uoOR2.ANeZcIG7eP8u2.bbY9v7llhHM/ZD4EW1DstKAP3JBiZYy', 'client6', 'Cliente'),
+(20, 'Register', '', '$2y$10$PcScVLAMV4KAqbk1jtNErOcbCCxZxtsXrX.Src1ZZElrPQgxTOtMe', 'client1', 'Cliente');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin_accounts`
+-- Indexes for table `accounts`
 --
-ALTER TABLE `admin_accounts`
-  ADD PRIMARY KEY (`admin_id`);
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin_accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
-ALTER TABLE `admin_accounts`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

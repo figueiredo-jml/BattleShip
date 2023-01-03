@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  	<title>Login</title>
+
+    <!-- Page CSS -->
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Modal -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+  
+<body>
+    <div class="login">
+        <h1>Login</h1>
+        <form action="authenticate.php" method="post">
+            <label for="nome">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="nome" placeholder="Username" id="nome" required>
+            <label for="pass">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="pass" placeholder="Password" id="pass" required>
+            
+            <input type="submit" name ="login" value="Login">
+        </form>
+    </div>
+    <div class="create">
+        <button type="button" class="submit btn-submit" data-toggle="modal" data-target="#register-modal">Criar nova conta de admin</button>
+    </div>    
+
+  <!-- The Modal -->
+	<div class="modal" id="register-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Create Account</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form action="register.php" id="register-form">
+                      <input class="form-control" type="hidden" name="id">
+                      <input class="form-control" type="hidden" name="funcao">
+                      <div class="form-group">
+                          <label for="nome">Nome</label>
+                          <input class="form-control" type="text" name="nome" id="username">
+                          <div id="usernameStatus"></div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input class="form-control" type="email" name="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="pass">Password</label>
+                          <input class="form-control" type="password" name="pass">
+                        </div>
+                        <div class="av-selector">
+                          <input id="client1" type="radio" name="avatar" value="client1" checked/>
+                          <label class="drinkcard-av client1" for="client1"></label>
+                          <input id="client2" type="radio" name="avatar" value="client2"/>
+                          <label class="drinkcard-av client2"for="client2"></label>
+                          <input id="client3" type="radio" name="avatar" value="client3"/>
+                          <label class="drinkcard-av client3" for="client3"></label>
+                          <input id="client4" type="radio" name="avatar" value="client4"/>
+                          <label class="drinkcard-av client4" for="client4"></label>
+                          <input id="client5" type="radio" name="avatar" value="client5"/>
+                          <label class="drinkcard-av client5" for="client5"></label>
+                          <input id="client6" type="radio" name="avatar" value="client6"/>
+                          <label class="drinkcard-av client6" for="client6"></label>
+                      </div>
+                        <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                  </form>
+
+
+                </div>
+
+          </div>
+        </div>
+  </div>
+
+
+  <script src="js/register.js"></script>
+
+
+</body>
+</html>
+  
+</html>
