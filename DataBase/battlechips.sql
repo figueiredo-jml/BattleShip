@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2023 at 08:09 PM
+-- Generation Time: Jan 04, 2023 at 05:11 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -42,11 +42,38 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`id`, `nome`, `email`, `pass`, `avatar`, `funcao`) VALUES
 (1, 'Filipe', 'filipe@mail.pt', '$2y$10$BLqpVz/yt83S7HSNZ8GCjeYZ7UigzfQq63Ia8ng2A3OopKMKnMDKO', 'admin1', 'Admin'),
-(8, 'Jose', 'jose@mail.pt', '$2y$10$Ijo/DKTHqWJionjUvT55muZJBf8jGLlBlRDIGBvpNzeP6PCHNJyqu', 'client3', 'Cliente'),
-(9, 'JoseFigueiredo', 'Josefigueiredo@mail.pt', '$2y$10$.brGQxeXEX0gUh8G7FIbhuvjbaXE5W3HKGkNnVyF9OvPR.8mEbs5C', 'admin2', 'Admin'),
-(10, 'Hashpass', 'hashpass@mail.pt', '$2y$10$NSjopxYWt8dT9f1Mb4PyseHsL6YRQY3SQM4w65ppADfIFDs2R4HUi', 'client5', 'Cliente'),
-(11, 'Register', 'Register@mail.pt', '$2y$10$X1uoOR2.ANeZcIG7eP8u2.bbY9v7llhHM/ZD4EW1DstKAP3JBiZYy', 'client6', 'Cliente'),
-(20, 'Register', '', '$2y$10$PcScVLAMV4KAqbk1jtNErOcbCCxZxtsXrX.Src1ZZElrPQgxTOtMe', 'client1', 'Cliente');
+(27, 'Jose', 'Jose@mail.pt', '$2y$10$NMUhip9mPT2qnCWvS73PruhCE8sWxhuYp9uK4qZNWEwXU8dkY6mnG', 'admin2', 'Admin'),
+(28, 'Teste', 'teste@mail.pt', '$2y$10$ghM4IZzoQMroxekT9PeF2u5l.47bDmMTEbQ888wgiVPwA2jp6lUiW', 'admin6', 'Admin'),
+(34, 'Cliente1', 'Cliente1@mail.pt', '$2y$10$SHeHMBxuZqK47LaXOGA5vuh8LKcgy49VCbeh9LswJT7rKf6yW0a1y', 'client4', 'Cliente'),
+(35, 'Cliente2', 'Cliente2@mail.pt', '$2y$10$R91GIHX6q6oSOtLPbsnEZusM8rYnSdplCAJ0e5djmtJcZ4pGhpf8u', 'client1', 'Cliente'),
+(36, 'Cliente3', 'Cliente3@mail.pt', '$2y$10$oDkXb1X/tlEe4k0BLL.n4.jSFM2fHOf9CSX5ZMZ8lT/6JH4aoU6z2', 'client2', 'Cliente');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `score`
+--
+
+CREATE TABLE `score` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `funcao` varchar(255) NOT NULL,
+  `jogos` int(11) NOT NULL,
+  `vitorias` int(11) NOT NULL,
+  `derrotas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `score`
+--
+
+INSERT INTO `score` (`id`, `nome`, `funcao`, `jogos`, `vitorias`, `derrotas`) VALUES
+(1, 'Filipe', 'Admin', 5, 3, 2),
+(21, 'Cliente1', 'Cliente', 0, 0, 0),
+(22, 'Cliente2', 'Cliente', 0, 0, 0),
+(23, 'Cliente3', 'Cliente', 0, 0, 0),
+(24, 'Jose', 'Admin', 0, 0, 0),
+(25, 'Teste', 'Admin', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -56,7 +83,17 @@ INSERT INTO `accounts` (`id`, `nome`, `email`, `pass`, `avatar`, `funcao`) VALUE
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nome` (`nome`),
+  ADD KEY `funcao` (`funcao`);
+
+--
+-- Indexes for table `score`
+--
+ALTER TABLE `score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nome_conta` (`nome`),
+  ADD KEY `funcao_conta` (`funcao`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -66,7 +103,24 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `score`
+--
+ALTER TABLE `score`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `score`
+--
+ALTER TABLE `score`
+  ADD CONSTRAINT `funcao_conta` FOREIGN KEY (`funcao`) REFERENCES `accounts` (`funcao`),
+  ADD CONSTRAINT `nome_conta` FOREIGN KEY (`nome`) REFERENCES `accounts` (`nome`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

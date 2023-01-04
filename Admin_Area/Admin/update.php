@@ -8,17 +8,7 @@
 
 	$hash_password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-	$servername = "localhost"; //set the servername
-	$username = "Filiper"; //set the server username
-	$password = "qwerty"; // set the server password (you must put password here if your using live server)
-	$dbname = "battlechips"; // set the table name
-
-	$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-	if ($mysqli->connect_errno) {
-	  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-	  exit();
-	}
+	include("../../includes/db.php");
 
 	// Set the INSERT SQL data
 	$sql = "UPDATE accounts SET nome='".$nome."', email='".$email."', pass='".$hash_password."', avatar='".$avatar."' WHERE id='".$id."'";

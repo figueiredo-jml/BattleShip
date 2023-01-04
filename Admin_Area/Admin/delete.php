@@ -1,25 +1,19 @@
 <?php
 	$request = $_REQUEST; //a PHP Super Global variable which used to collect data after submitting it from the form
-	$Id = $request['id']; //admin ID we are using it to get the admin record
+	//$Id = $request['id']; //admin ID we are using it to get the admin record
+	$nome = $request['nome'];
 
-	$servername = "localhost"; //set the servername
-	$username = "Filiper"; //set the server username
-	$password = "qwerty"; // set the server password (you must put password here if your using live server)
-	$dbname = "battlechips"; // set the table name
-
-	$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-	if ($mysqli->connect_errno) {
-	  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-	  exit();
-	}
+	include("../../includes/db.php");
 
 	// Set the DELETE SQL data
-	$sql = "DELETE FROM accounts WHERE id='".$Id."'";
+	$sql = "DELETE FROM score WHERE nome='".$nome."'";
+	$sql2 = "DELETE FROM accounts WHERE nome='".$nome."'";
 
 	// Process the query so that we will save the date of birth
 	if ($mysqli->query($sql)) {
-	  echo "Admin has been successfully deleted.";
+		if ($mysqli->query($sql2)) {
+	  	echo "Admin has been successfully deleted.";
+		}
 	} else {
 	  echo "Error: " . $sql . "<br>" . $mysqli->error;
 	}

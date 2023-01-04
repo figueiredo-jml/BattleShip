@@ -20,7 +20,7 @@ function all()
 					html += "<p>" + value.nome +' ' + " <span class='list-email'>(" + value.email + ")</span>" + "</p>";
 					html += "<img src = /BattleShip/Images/Admin/" + value.avatar + ".png width='100' height='100'>";
 					html += "<button class='edit btn-edit btn-sm mt-2' data-toggle='modal' data-target='#edit-admin-modal' data-id='" + value.id + "'>Edit</button>";
-					html += "<button class='noselect btn-sm mt-2 btn-delete-admin float-right' data-id='" + value.id + "'><span class='text'>Delete</span><span class='icon'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z'/></svg></span></button>"
+					html += "<button class='noselect btn-sm mt-2 btn-delete-admin float-right' data-id='" + value.nome + "'><span class='text'>Delete</span><span class='icon'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z'/></svg></span></button>"
 					html += '</a>';
 	            });
 	            html += '</div>';
@@ -151,13 +151,15 @@ function del()
 	$(document).delegate(".btn-delete-admin", "click", function() {
 
 		if (confirm("Are you sure you want to delete this record?")) {
-		    var Id = $(this).attr('data-id'); //get the admin ID
+		    //var Id = $(this).attr('data-id'); //get the admin ID
+			var nome = $(this).attr('data-id');
 
 		    // Ajax config
 			$.ajax({
 		        type: "GET", //we are using GET method to get data from server side
 		        url: 'delete.php', // get the route value
-		        data: {id:Id}, //set data
+		        //data: {id:Id}, //set data
+				data: {nome:nome},
 		        beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
 		            
 		        },

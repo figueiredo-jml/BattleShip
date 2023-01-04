@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express')
 const http = require('http')
 const WebSocket = require('ws')
@@ -12,19 +13,24 @@ let turn = 0
 
 let p1Count = 0
 let p2Count = 0
-
+//---------------------------------------get user IDs-------------------------------
+let user1ID = 0
+let user2ID = 0
+//-----------------------------------------------------------------------------------
 wss.on('connection', function connection(ws) {
   if(players.length === 2){
+    console.log('to much players')
     ws.close()
     return
   }
   if(p1Count === 17 || p2Count === 17){
+    console.log('why')
     return
   }
   players.push(ws)
   console.log(`Client connected.`)
   ws.send(players.length)
-  
+
   //First turn of the game
   if(players.length === 2){
     //players[0].send('00')
@@ -36,6 +42,17 @@ wss.on('connection', function connection(ws) {
 
     if(grids.length < 2){
       grids.push(data)
+      //---------------------------------------get user IDs-------------------------------
+      if(ws === players[0]){
+        players[0].send(3)
+        user1ID = data
+        console.log(user1ID)
+      }else if(ws === players[1]){
+        players[1].send(3)
+        user2ID = data
+        console.log(user2ID)
+      }
+      //-----------------------------------------------------------------------------------
     }else{
       if(ws === players[0] && turn === 0){
         //1st number = player / 2nd number = hit/miss
@@ -66,28 +83,32 @@ wss.on('connection', function connection(ws) {
         }
       }
       //disconnect players
-      if(ws === players[0] && data === 111){
-        console.log("Player 1 Disconnected")
-        players[0].close
-        players.splice(0,1)
-        grids.splice(0,1)
-      }
-      if(ws === players[1] && data === 111){
-        console.log("Player 1 Disconnected")
-        players[0].close
-        players.splice(0,1)
-        grids.splice(0,1)
-      }else{
-        if(p1Count === 17 || p2Count === 17){
-          if(p1Count === 17){
-            players[0].send(JSON.stringify('p1'))
-            players[1].send(JSON.stringify('p2'))
-          }else if(p2Count === 17){
-            players[0].send(JSON.stringify('p2'))
-            players[1].send(JSON.stringify('p1'))
-          }
-              
+      function discPlayers(){
+        console.log("Players Disconnected")
+        for(x = 0;x<2;x++){
+          players.pop()
+          grids.pop()
         }
+        console.log(players)
+        console.log(grids)
+        p1Count = 0
+        p2Count = 0
+        turn = 0
+      }
+
+      if(p1Count === 17 || p2Count === 17){
+        if(p1Count === 17){
+          players[0].send(JSON.stringify('p1'))
+          players[1].send(JSON.stringify('p2'))
+        }else if(p2Count === 17){
+          players[0].send(JSON.stringify('p2'))
+          players[1].send(JSON.stringify('p1'))
+        }
+        discPlayers()
+      }
+
+      if(data === 'closing'){
+        discPlayers()
       }
 
       if(players.length === 2){

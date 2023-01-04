@@ -17,7 +17,8 @@ function all()
 	            $.each(response, function(key,value) {
 	            	// Our scoreboard template
 					html += '<a href="#" class="list-group-item list-group-item-action">';
-					html +=  value.games_done +' '+ value.games_won +' '+ value.games_lost;
+					html += "<p>" + value.nome +' ' + " <span class='list-email'>(" + value.funcao + ")</span>" + "</p>";
+					html += ' Games '+'('+ value.jogos +')'+' Victories '+'('+ value.vitorias +')'+' Defeats '+'('+ value.derrotas +')';
 					html += '</a>';
 	            });
 	            html += '</div>';

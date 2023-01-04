@@ -18,16 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const userSquares = []
   const computerSquares = []
   let isHorizontal = true
-  let isGameOver = false
   let currentPlayer = true
   const width = 10
   let prepareBoard = false
 
+  let isGameOver = false
   let ws
   let userShips = []
   let multi = false
   let connected = false
   let block
+  //---------------------------------------get user IDs-------------------------------
+  //let userID = 0
+  //----------------------------------------------------------------------------------
 
   //Create Board
   function createBoard(grid, squares) {
@@ -227,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Singler player or multiplayer
 
   function multiPlayer() {
+    isGameOver = false
     if(multi === false){
       multi = true
       for (let i = 0; i < width*width; i++) {
@@ -261,9 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
   //Reset User ships
   function resetBoard() {
     for (let i = 0; i < width*width; i++) {
-      
       if (userSquares[i].classList.contains('taken')){
         userSquares[i].classList = 'points'  
+      }else if(userSquares[i].classList.contains('boom')){
+        userSquares[i].classList = 'points'
+      }else if(userSquares[i].classList.contains('miss')){
+        userSquares[i].classList = 'points'
       }
     }
     createDragShip()
@@ -282,7 +289,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Game Logic
   function playGame() {
-    //if (isGameOver) return
+    if (isGameOver){
+      isGameOver = false
+      console.log(isGameOver)
+      return
+    }
     btnOff()
     if (prepareBoard === false){
       prepareBoard = true
@@ -290,6 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     infoDisplay.innerHTML = playerCount + "/17"
     if(multi === true){
+      //---------------------------------------get user IDs-------------------------------
+      //Set userID
+      //userID = "<?php echo $_SESSION['id']; ?>"
+      //----------------------------------------------------------------------------------
+
       if(connected == false){
         //Open Connection
         ws = new WebSocket('ws://localhost:6969')
@@ -310,15 +326,19 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           let msg1 = data.split(" ")[0]
           let msg2 = data.split(" ")[1]
+          //---------------------------------------get user IDs-------------------------------
+          //Send useID
+          /*if(msg1 === 3){
+            ws.send(userID)
+          }*/
+          //----------------------------------------------------------------------------------
           if(msg1 === "p1"){
             console.log(msg1)
             infoDisplay.innerHTML = "You WIN"
-            ws.send(111)
             gameOver()
           }else if(msg1 === "p2"){
             console.log(msg1)
             infoDisplay.innerHTML = "You Lost"
-            ws.send(111)
             gameOver()
           }
           //1st number = player / 2nd number = hit/miss
@@ -388,7 +408,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       checkForWins()
       currentPlayer = !currentPlayer
-      console.log(currentPlayer);
       playGame()
     }
     
@@ -398,7 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let random = Math.floor(Math.random() * userSquares.length)
     if (!userSquares[random].classList.contains('boom')) {
       userSquares[random].classList.add('boom')
-      cpuCount++
+      if(userSquares[random].classList.contains('taken')){
+        cpuCount++
+      }
       checkForWins()
     } else computerGo()
     currentPlayer = true
@@ -418,15 +439,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function resetComputer(){
+    for (let i = 0; i < width*width; i++) {
+      if (computerSquares[i].classList.contains('taken')){
+        computerSquares[i].classList = 'points'  
+      }else if(computerSquares[i].classList.contains('boom')){
+        computerSquares[i].classList = 'points'
+      }else if(computerSquares[i].classList.contains('miss')){
+        computerSquares[i].classList = 'points'
+      }
+    }
+    for(var i = 0 ; i<5 ; i++){
+      generate(shipArray[i],computerSquares)
+    }
+  }
+
   function gameOver() {
     isGameOver = true
     computerSquares.forEach(square => square.removeEventListener('click', function(e) {
       revealSquare(square)
     }))
+    cpuCount = 0
+    playerCount = 0
+    resetBoard()
+    resetComputer()
+    if(multi === true)
+    {
+      ws.close()
+      multi = false
+      connected = false
+    }
     resetButton.addEventListener('click', resetBoard)
     startButton.addEventListener('click', playGame)
     multiButton.addEventListener('click', multiPlayer)
     randomButton.addEventListener('click', generateUser)
-    rotateButton.addEventListener('click', rotate)
+    rotateButton.addEventListener('click', rotate)   
   }
+
+  $(window).bind("beforeunload", function() { 
+    if(multi === true)
+    {
+      ws.send(JSON.stringify('closing'))
+      ws.close()
+      multi = false
+      connected = false
+    } 
+  })
+  
 })

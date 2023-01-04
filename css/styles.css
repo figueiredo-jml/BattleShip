@@ -393,7 +393,7 @@ p{margin-bottom:.3em;}
 
  /* Menu */
 
- @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url(sfont.css);
 html, body {
     overflow-x: hidden;
     height: 100%;
@@ -421,12 +421,6 @@ body {
     overflow: hidden;
     z-index: 10;
 }
-/*
-.container-fluid{
-  transform: translateX(250px);
-  transition: transform 250ms ease-in-out;
-}
-*/
 
 .main {
     margin: 0 auto;

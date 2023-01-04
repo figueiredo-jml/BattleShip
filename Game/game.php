@@ -19,9 +19,10 @@ if (!isset($_SESSION['loggedin'])) {
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../plugins/bootstrap-datepicker/locales/gjquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../plugins/bootstrap-datepicker/css/gbootstrap.min.css">
+    <!--integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="../js/app.js" charset="utf-8"></script>
     <script data-main="../js/app.js" src="../js/require.js"></script>
   </head>
@@ -30,7 +31,7 @@ if (!isset($_SESSION['loggedin'])) {
   <br>
 
     <div class="container-fluid">
-      <div class="row justify-content-md-center align-items-center" >
+      <div class="row justify-content-md-center align-items-center">
         <div class="col-2" >
           <div class="panel">
             <div class="topPanel">

@@ -1,17 +1,7 @@
 <?php
     session_start();
 
-	$servername = "localhost"; //set the servername
-	$username = "Filiper"; //set the server username
-	$password = "qwerty"; // set the server password (you must put password here if your using live server)
-	$dbname = "battlechips"; // set the table name
-
-	$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-	if ($mysqli->connect_errno) {
-	  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-	  exit();
-	}
+	include("includes/db.php");
 
     // Now we check if the data from the login form was submitted, isset() will check if the data exists.
     if ( !isset($_POST['nome'], $_POST['pass']) ) {
@@ -42,11 +32,18 @@
                 header('Location: Game/game.php');
             } else {
                 // Incorrect password
-                echo 'Incorrect username and/or password!';
+
+                //echo '<script>alert("Incorrect password")</script>';
+                header('Location: index.html');
+
+
             }
         } else {
             // Incorrect username
-            echo 'Incorrect username and/or password!';
+
+            //echo '<script>alert("Incorrect username")</script>';
+            header('Location: index.html');
+
         }
 
 
