@@ -28,10 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let multi = false
   let connected = false
   let block
-  //---------------------------------------get user IDs-------------------------------
-  //let userID = 0
-  //----------------------------------------------------------------------------------
-
+  
+  function getID(){
+    //Get user id,name
+    
+      fetch("../js/readTable.php", { method : "POST" })
+      .then(res => res.text()).then((txt) => {
+        console.log(txt)
+        ws.send(JSON.stringify(txt))
+      })
+    
+  }
+  
   //Create Board
   function createBoard(grid, squares) {
     for (let i = 0; i < width*width; i++) {
@@ -301,11 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     infoDisplay.innerHTML = playerCount + "/17"
     if(multi === true){
-      //---------------------------------------get user IDs-------------------------------
-      //Set userID
-      //userID = "<?php echo $_SESSION['id']; ?>"
-      //----------------------------------------------------------------------------------
-
       if(connected == false){
         //Open Connection
         ws = new WebSocket('ws://localhost:6969')
@@ -313,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Connection opened!')
             //Send player grid to server
             ws.send(JSON.stringify(userShips))
+            getID()
         }
         connected = true
         turnDisplay.innerHTML = 'Enemy Go'
@@ -326,12 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           let msg1 = data.split(" ")[0]
           let msg2 = data.split(" ")[1]
-          //---------------------------------------get user IDs-------------------------------
-          //Send useID
-          /*if(msg1 === 3){
-            ws.send(userID)
-          }*/
-          //----------------------------------------------------------------------------------
+
           if(msg1 === "p1"){
             console.log(msg1)
             infoDisplay.innerHTML = "You WIN"
