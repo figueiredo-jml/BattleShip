@@ -16,86 +16,52 @@ let turn = 0
 let p1Count = 0
 let p2Count = 0
 
+let jogos = 0
+let vitorias = 0
+let derrotas = 0
 
-function readScores(user,point){
-  console.log('readScores...');
+function updateDB(user,point){
+  console.log('readScores...')
   let con = mysql.createConnection({
     host: "localhost",
     user: "Filiper",
     password: "qwerty",
     database: "battlechips"
-  });
-  
-  let jogos = 0;
-  let vitorias = 0;
-  let derrotas = 0;
-  console.log('00');
+  })
 
-  console.log('user: '+user[0])
-  let query = "SELECT jogos, vitorias, derrotas FROM score WHERE id=" + user[0];
-  console.log(query);
+  user = user.split(" ")
+  user = user[1].toString()
+
+  let query = "SELECT jogos, vitorias, derrotas FROM score WHERE nome=" + mysql.escape(user)
+  console.log(query)
 
   con.connect(function(err) {
     if (err) throw err
-    con.query(query, function (err, result, fields) {
+    con.query(query, [user], function (err, result) {
       if (err) throw err
       jogos = result[0].jogos
       vitorias = result[0].vitorias
       derrotas = result[0].derrotas
-      console.log(jogos,vitorias,derrotas);
-      console.log('000');
-    });
-  });
+      
+      if(point === true){
+        //update if winner
+        let sql = "UPDATE score SET jogos=" + (jogos + 1) + ", vitorias=" + (vitorias + 1) + ", derrotas=" + derrotas + " WHERE nome=" + mysql.escape(user)
+        con.query(sql, function (err, result) {
+          if (err) throw err
+          console.log(result.affectedRows + " record(s) updated")
+        })
+        
+      }else{
+        //update if loser
+        let sql = "UPDATE score SET jogos=" + (jogos + 1) + ", vitorias=" + vitorias + ", derrotas=" + (derrotas + 1) + " WHERE nome=" + mysql.escape(user)
+        con.query(sql, function (err, result) {
+          if (err) throw err
+          console.log(result.affectedRows + " record(s) updated")
+        })
 
-  con.end(function(err) {
-    if (err) {
-      return console.log('error:' + err.message);
-    }
-    console.log('Close the database connection.');
-  });
-
-  console.log([jogos, vitorias, derrotas]);
-
-  //updateScores(user,point,jogos,vitorias,derrotas)
-  return [jogos, vitorias, derrotas]
-}
-
-function updateScores(user,point,jogos,vitorias,derrotas){
-
-  let con = mysql.createConnection({
-    host: "localhost",
-    user: "Filiper",
-    password: "qwerty",
-    database: "battlechips"
-  })
-  console.log('0000')
-  if(point === true){
-    con.connect(function(err) {
-      if (err) throw err
-      var sql = "UPDATE score SET jogos=" + (jogos + 1) + ", vitorias=" + (vitorias + 1) + ", derrotas=" + derrotas + " WHERE id=" + user[0]
-      con.query(sql, function (err, result) {
-        if (err) throw err
-        console.log(result.affectedRows + " record(s) updated");
-      })
+      }
     })
-  }else{
-    con.connect(function(err) {
-      if (err) throw err
-      var sql = "UPDATE score SET jogos=" + (jogos + 1) + ", vitorias=" + vitorias + ", derrotas=" + (derrotas + 1) + " WHERE id=" + user[0]
-      con.query(sql, function (err, result) {
-        if (err) throw err
-        console.log(result.affectedRows + " record(s) updated");
-      })
-    })
-  }
-
-  con.end(function(err) {
-    if (err) {
-      return console.log('error:' + err.message)
-    }
-    console.log('Close the database connection.')
   })
-
 }
 
 wss.on('connection', function connection(ws) {
@@ -116,17 +82,15 @@ wss.on('connection', function connection(ws) {
   }
   ws.onmessage = message => {
     data = JSON.parse(message.data)
-    console.log(data)
     dataStr = data.toString()
+
+    console.log('data: ' + data)
 
     if(dataStr.includes('-')){
       scores.push(data.slice(1,20))
-      console.log('--------')
     }else{
       if(grids.length < 2){
         grids.push(data)
-        console.log(data)
-        
       }else{
         if(ws === players[0] && turn === 0){
           //1st number = player / 2nd number = hit/miss
@@ -175,14 +139,13 @@ wss.on('connection', function connection(ws) {
           if(p1Count === 17){
             players[0].send(JSON.stringify('p1'))
             players[1].send(JSON.stringify('p2'))
-            results = readScores(scores[0],true)
-            //updateScores()
-            readScores(scores[1],false)
+            updateDB(scores[0],true)
+            updateDB(scores[1],false)
           }else if(p2Count === 17){
             players[0].send(JSON.stringify('p2'))
             players[1].send(JSON.stringify('p1'))
-            readScores(scores[0],false)
-            readScores(scores[1],true)
+            updateDB(scores[0],false)
+            updateDB(scores[1],true)
           }
           discPlayers()
         }

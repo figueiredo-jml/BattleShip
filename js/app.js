@@ -302,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(isGameOver)
       return
     }
+    console.log('entrei')
     btnOff()
     if (prepareBoard === false){
       prepareBoard = true
@@ -333,10 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if(msg1 === "p1"){
             console.log(msg1)
+            turnDisplay.innerHTML = 'Congrats'
             infoDisplay.innerHTML = "You WIN"
             gameOver()
           }else if(msg1 === "p2"){
             console.log(msg1)
+            turnDisplay.innerHTML = 'Sorry'
             infoDisplay.innerHTML = "You Lost"
             gameOver()
           }
@@ -355,7 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("-10-")
             userSquares[msg2].classList.add('miss')
           }
-          infoDisplay.innerHTML = playerCount + "/17"
+          if (isGameOver === false){
+            infoDisplay.innerHTML = playerCount + "/17"
+          }
         }
         //Close Connection
         ws.onclose = function() {
