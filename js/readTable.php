@@ -13,7 +13,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 define("DB_HOST", "localhost");
 define("DB_NAME", "battlechips");
 define("DB_CHARSET", "utf8");
-define("DB_USER", "Filiper");
+define("DB_USER", "Jose");
 define("DB_PASSWORD", "qwerty");
 
 $nome = $_SESSION['nome'];

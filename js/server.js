@@ -24,7 +24,7 @@ function updateDB(user,point){
   console.log('readScores...')
   let con = mysql.createConnection({
     host: "localhost",
-    user: "Filiper",
+    user: "Jose",
     password: "qwerty",
     database: "battlechips"
   })
@@ -162,6 +162,6 @@ wss.on('connection', function connection(ws) {
   }
 })
 
-server.listen(port, function() {
+server.listen(port,'192.168.1.90', function() {
   console.log(`Server is listening on ${port}!`)
 })

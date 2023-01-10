@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(multi === true){
       if(connected == false){
         //Open Connection
-        ws = new WebSocket('ws://localhost:6969')
+        ws = new WebSocket('ws://188.83.50.201:6969')
         ws.onopen = () => {
           console.log('Connection opened!')
             //Send player grid to server
