@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
     <title>Battle Ships</title>
 
     <!-- Menu -->
-    <?php include(dirname(__DIR__).'../Includes/menu.php')?>
+    <?php include('/var/www/html/includes/menu.php')?>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styles.css">

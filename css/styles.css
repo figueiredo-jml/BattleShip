@@ -309,12 +309,12 @@ background-color: #5adaff;
       -moz-appearance:none;
            appearance:none;
  }
- .admin1{background-image:url(/BattleShip/Images/Admin/admin1.png);}
- .admin2{background-image:url(/BattleShip/Images/Admin/admin2.png);}
- .admin3{background-image:url(/BattleShip/Images/Admin/admin3.png);}
- .admin4{background-image:url(/BattleShip/Images/Admin/admin4.png);}
- .admin5{background-image:url(/BattleShip/Images/Admin/admin5.png);}
- .admin6{background-image:url(/BattleShip/Images/Admin/admin6.png);}
+ .admin1{background-image:url(/Images/Admin/admin1.png);}
+ .admin2{background-image:url(/Images/Admin/admin2.png);}
+ .admin3{background-image:url(/Images/Admin/admin3.png);}
+ .admin4{background-image:url(/Images/Admin/admin4.png);}
+ .admin5{background-image:url(/Images/Admin/admin5.png);}
+ .admin6{background-image:url(/Images/Admin/admin6.png);}
  
  .av-selector input:active +.drinkcard-av{opacity: .9;}
  .av-selector input:checked +.drinkcard-av{
@@ -354,12 +354,12 @@ background-color: #5adaff;
      -moz-appearance:none;
           appearance:none;
 }
-.client1{background-image:url(/BattleShip/Images/Client/client1.png);}
-.client2{background-image:url(/BattleShip/Images/Client/client2.png);}
-.client3{background-image:url(/BattleShip/Images/Client/client3.png);}
-.client4{background-image:url(/BattleShip/Images/Client/client4.png);}
-.client5{background-image:url(/BattleShip/Images/Client/client5.png);}
-.client6{background-image:url(/BattleShip/Images/Client/client6.png);}
+.client1{background-image:url(/Images/Client/client1.png);}
+.client2{background-image:url(/Images/Client/client2.png);}
+.client3{background-image:url(/Images/Client/client3.png);}
+.client4{background-image:url(/Images/Client/client4.png);}
+.client5{background-image:url(/Images/Client/client5.png);}
+.client6{background-image:url(/Images/Client/client6.png);}
 
 .av-selector input:active +.drinkcard-av{opacity: .9;}
 .av-selector input:checked +.drinkcard-av{

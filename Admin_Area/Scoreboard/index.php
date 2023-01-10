@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 	<!-- Menu -->
 
-	<?php include(dirname(__DIR__).'/../Includes/menu.php')?>
+	<?php include(dirname(__DIR__).'/../includes/menu.php')?>
 
   	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="../../plugins/bootstrap-datepicker/css/bootstrap.min.css">
